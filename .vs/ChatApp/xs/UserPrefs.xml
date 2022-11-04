@@ -1,0 +1,6 @@
+﻿<Properties>
+  <MonoDevelop.Ide.ItemProperties.src.Infrastructure FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.src.Domain FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.src.Application FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+</Properties>

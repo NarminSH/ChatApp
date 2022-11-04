@@ -1,0 +1,12 @@
+/Users/narmin/Projects/ChatApp/Domain/bin/Debug/net6.0/Domain.deps.json
+/Users/narmin/Projects/ChatApp/Domain/bin/Debug/net6.0/Domain.dll
+/Users/narmin/Projects/ChatApp/Domain/bin/Debug/net6.0/Domain.pdb
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.AssemblyInfoInputs.cache
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.dll
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/refint/Domain.dll
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/Domain.pdb
+/Users/narmin/Projects/ChatApp/Domain/obj/Debug/net6.0/ref/Domain.dll
