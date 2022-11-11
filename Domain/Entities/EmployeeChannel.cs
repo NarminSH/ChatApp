@@ -1,11 +1,13 @@
 ﻿using System;
+
 namespace Domain.Entities
 {
-    public class EmployeeChannel
+    public class EmployeeChannel : BaseAuditibleEntity
     {
-        public EmployeeChannel()
-        {
-        }
+        public int ChannelId { get; set; }
+        public Connection Channel { get; set; } = null!;
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; } = null!;
     }
 }
 
