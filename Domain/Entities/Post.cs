@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class Post : BaseAuditibleEntity
+    public class Post : BaseAuditableEntity
     {
         public int ChannelId { get; set; }
         public Connection Channel { get; set; }

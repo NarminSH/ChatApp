@@ -1,13 +1,14 @@
 ﻿using System;
-namespace Domain.Entities
+namespace Application.Dtos.ConnectionDtos
 {
-    public class Connection: BaseAuditableEntity
+    public class GetConnectionDto : IMapFrom<Connection>
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public bool IsChannel { get; set; }
         public bool IsPrivate { get; set; }
         public int SenderId { get; set; }
         public int ReceiverId { get; set; }
+
     }
 }
 

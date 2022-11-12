@@ -9,12 +9,34 @@
   <ItemGroup>
     <None Remove="Repositories\" />
     <None Remove="Repositories\Abstraction\" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="FluentValidation.DependencyInjectionExtensions" />
+    <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\BaseDtos\" />
+    <None Remove="Common\" />
+    <None Remove="Common\Exceptions\" />
+    <None Remove="Common\Mappings\" />
+    <None Remove="Dtos\EmployeeDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Repositories\Abstraction\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\BaseDtos\" />
+    <Folder Include="Common\" />
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="Common\Mappings\" />
+    <Folder Include="Dtos\EmployeeDtos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
   </ItemGroup>
 </Project>

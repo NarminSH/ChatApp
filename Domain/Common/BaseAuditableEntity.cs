@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Domain.Common
 {
-    public class BaseAuditibleEntity : BaseEntity
+    public class BaseAuditableEntity : BaseEntity
     {
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "/Users/narmin/Projects/ChatApp/Infrastructure/Infrastructure.csproj": {}
+    "/Users/narmin/Projects/ChatApp/WebUI/WebUI.csproj": {}
   },
   "projects": {
     "/Users/narmin/Projects/ChatApp/Application/Application.csproj": {
@@ -208,6 +208,85 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/narmin/Projects/ChatApp/WebUI/WebUI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/narmin/Projects/ChatApp/WebUI/WebUI.csproj",
+        "projectName": "WebUI",
+        "projectPath": "/Users/narmin/Projects/ChatApp/WebUI/WebUI.csproj",
+        "packagesPath": "/Users/narmin/.nuget/packages/",
+        "outputPath": "/Users/narmin/Projects/ChatApp/WebUI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/narmin/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/narmin/Projects/ChatApp/Application/Application.csproj": {
+                "projectPath": "/Users/narmin/Projects/ChatApp/Application/Application.csproj"
+              },
+              "/Users/narmin/Projects/ChatApp/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/narmin/Projects/ChatApp/Infrastructure/Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class EmployeeChannel : BaseAuditibleEntity
+    public class EmployeeChannel : BaseAuditableEntity
     {
         public int ChannelId { get; set; }
         public Connection Channel { get; set; } = null!;

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Domain.Entities
 {
-    public class Reaction: BaseAuditibleEntity
+    public class Reaction: BaseAuditableEntity
     {
         public int PostId { get; set; }
         public Post Post { get; set; } = null!;
