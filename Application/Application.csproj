@@ -19,6 +19,9 @@
     <None Remove="Common\Exceptions\" />
     <None Remove="Common\Mappings\" />
     <None Remove="Dtos\EmployeeDtos\" />
+    <None Remove="Employees\" />
+    <None Remove="Employees\Commands\" />
+    <None Remove="Employees\Commands\CreateEmployee\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -29,6 +32,9 @@
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Mappings\" />
     <Folder Include="Dtos\EmployeeDtos\" />
+    <Folder Include="Employees\" />
+    <Folder Include="Employees\Commands\" />
+    <Folder Include="Employees\Commands\CreateEmployee\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

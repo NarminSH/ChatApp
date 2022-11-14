@@ -35,7 +35,7 @@ namespace Infrastructure.Interceptors
         private void UpdateEntities(DbContext? context)
         {
             if (context == null) return;
-            foreach (var entry in context.ChangeTracker.Entries<BaseAuditibleEntity>())
+            foreach (var entry in context.ChangeTracker.Entries<BaseAuditableEntity>())
             {
                 if (entry.State == EntityState.Added)
                 {
