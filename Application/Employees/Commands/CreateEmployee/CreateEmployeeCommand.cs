@@ -7,6 +7,7 @@ namespace Application.Employees.Commands.CreateEmployee;
 public class CreateEmployeeCommand : IRequest<IdentityResult>, IMapFrom<Employee>
 {
     public string Fullname { get; set; } = null!;
+    public string Username { get; set; } = null!;
     public string Email { get; set; } = null!;
     public string PasswordHash { get; set; } = null!;
 }
@@ -25,7 +26,7 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
     {
 
         var entity = _mapper.Map<Employee>(request);
-        IdentityResult result = await _userManager.CreateAsync(entity);
+        IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
         return result;
 
     }
