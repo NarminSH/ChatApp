@@ -28,7 +28,6 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
 
         var entity = _mapper.Map<Employee>(request);
         IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
-        IdentityResult roleResult = await _userManager.AddToRoleAsync(entity, "Member");
         return result;
 
     }

@@ -20,10 +20,11 @@ namespace WebUI.Controllers
             await Mediator.Send(value);
         }
         [HttpPost("login")]
-        public async Task Login([FromBody] LoginEmployeeCommand command)
+        public async Task<string> Login([FromBody] LoginEmployeeCommand command)
         {
-            await Mediator.Send(command);
+            string res = await Mediator.Send(command);
+            return res;
         }
     }
-}
+} 
 

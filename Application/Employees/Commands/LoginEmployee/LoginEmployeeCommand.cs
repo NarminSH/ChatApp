@@ -14,7 +14,7 @@ namespace Application.Employees.Commands.LoginEmployee;
 public class LoginEmployeeCommand: IRequest<string>, IMapFrom<Employee>
 {
     public string Email { get; set; } = null!;
-    public string Password { get; set; } = null!;
+    public string PasswordHash { get; set; } = null!;
 }
 
 public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand, string>
