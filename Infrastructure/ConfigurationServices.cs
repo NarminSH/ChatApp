@@ -38,6 +38,7 @@ namespace Infrastructure
             serviceCollection.AddIdentity<Employee, IdentityRole>(opt =>
             {
                 opt.SignIn.RequireConfirmedEmail = true;
+                opt.User.RequireUniqueEmail = true;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequiredLength = 8;
                 opt.Password.RequireDigit = false;
