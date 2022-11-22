@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Employees.Commands.CreateEmployee;
 using Application.Employees.Commands.LoginEmployee;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -14,10 +15,13 @@ namespace WebUI.Controllers
     [ApiController]
     public class EmployeesController : ApiBaseController
     {
-        [HttpPost]
-        public async Task Post([FromBody] CreateEmployeeCommand value)
+      
+        [HttpPost("register")]
+        public async Task<IdentityResult> Post([FromBody] CreateEmployeeCommand value)
         {
-            await Mediator.Send(value);
+           
+            IdentityResult res = await Mediator.Send(value);
+            return res;
         }
         [HttpPost("login")]
         public async Task<string> Login([FromBody] LoginEmployeeCommand command)

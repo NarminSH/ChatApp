@@ -20,13 +20,15 @@ public class LoginEmployeeCommand: IRequest<string>, IMapFrom<Employee>
 public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand, string>
 {
     private readonly UserManager<Employee> _userManager;
+    private readonly SignInManager<Employee> _signInManager;
     private readonly IMapper _mapper;
     private readonly IConfiguration _config;
 
     public LoginEmployeeCommandHandler(UserManager<Employee> userManager, IMapper mapper,
-        IConfiguration config)
+        IConfiguration config, SignInManager<Employee> signInManager)
     {
         this._mapper = mapper;
+        this._signInManager = signInManager;
         this._userManager = userManager;
         this._config = config;
     }
@@ -37,7 +39,15 @@ public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand,
         Employee existedUser = await _userManager.FindByEmailAsync(entity.Email);
         if (existedUser is null) throw new NotFoundException();
         bool result = await _userManager.CheckPasswordAsync(existedUser, entity.PasswordHash);
-        if (!result) throw new Exception("Username or password is incorrect");
+        if (!result) return "Username or password is incorrect";
+        bool canSignIn = await _signInManager.CanSignInAsync(entity);
+        if (!canSignIn)
+        {
+            return "Email is not confirmed";
+        }
+        else
+        {
+
         List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, existedUser.Id),
@@ -59,6 +69,7 @@ public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand,
 
         string tokenStr = new JwtSecurityTokenHandler().WriteToken(token);
         return tokenStr;
+        }
 
     }
 }

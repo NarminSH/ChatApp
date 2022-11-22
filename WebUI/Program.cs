@@ -1,4 +1,5 @@
 ﻿using Application;
+using Domain.Entities;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 var app = builder.Build();
 

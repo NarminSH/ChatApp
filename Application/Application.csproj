@@ -23,6 +23,11 @@
     <None Remove="Employees\Commands\" />
     <None Remove="Employees\Commands\CreateEmployee\" />
     <None Remove="Employees\Commands\LoginEmployee\" />
+    <None Remove="Connections\" />
+    <None Remove="Connections\Commands\" />
+    <None Remove="Connections\Commands\CreateConnection\" />
+    <None Remove="Connections\Commands\UpdateConnection\" />
+    <None Remove="Connections\Commands\DeleteConnection\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -37,6 +42,11 @@
     <Folder Include="Employees\Commands\" />
     <Folder Include="Employees\Commands\CreateEmployee\" />
     <Folder Include="Employees\Commands\LoginEmployee\" />
+    <Folder Include="Connections\" />
+    <Folder Include="Connections\Commands\" />
+    <Folder Include="Connections\Commands\CreateConnection\" />
+    <Folder Include="Connections\Commands\UpdateConnection\" />
+    <Folder Include="Connections\Commands\DeleteConnection\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

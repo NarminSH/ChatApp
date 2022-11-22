@@ -32,6 +32,7 @@ namespace Infrastructure
             serviceCollection.AddTransient<IReactionRepository, ReactionRepository>();
             serviceCollection.AddTransient<IConnectionRepository, ConnectionRepository>();
             serviceCollection.AddTransient<IEmployeeChannelRepository, EmployeeChannelRepository>();
+            serviceCollection.AddTransient<IEmailSender, SendGridEmailSender>();
 
             serviceCollection.AddTransient<IApplicationDbContext, ApplicationDbContext>();
 
