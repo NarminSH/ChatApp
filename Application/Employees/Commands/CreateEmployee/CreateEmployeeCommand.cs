@@ -38,12 +38,9 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
     {
         var entity = _mapper.Map<Employee>(request);
         IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
-        var code = await _userManager.GenerateEmailConfirmationTokenAsync(entity);
-        Console.WriteLine("..............");
-        Console.WriteLine(code);
-        Console.WriteLine("..............");
+        var token = await _userManager.GenerateEmailConfirmationTokenAsync(entity);
         string url = _linkGenerator.GetUriByAction( _httpContext.HttpContext,
-            action: "ConfirmEmail", controller: "Employees", values:  new { code, entity.Id });
+            action: "ConfirmEmail", controller: "Employees", values:  new { token, entity.Id });
         string message = "Please confirm your email by clicking here " + url;
         await _mailService.SendEmailAsync(entity.Email, "Register confirmation", message);
         return result;

@@ -14,13 +14,10 @@ public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeComma
 {
     private readonly IEmployeeRepository _employeeRepository;
     private readonly UserManager<Employee> _userManager;
-    private readonly IMapper _mapper;
 
-    public ConfirmEmployeeCommandHandler(IEmployeeRepository employeeRepository,
-        IMapper mapper, UserManager<Employee> userManager)
+    public ConfirmEmployeeCommandHandler(IEmployeeRepository employeeRepository,UserManager<Employee> userManager)
     {
         this._employeeRepository = employeeRepository;
-        this._mapper = mapper;
         this._userManager = userManager;
     }
 
@@ -33,7 +30,7 @@ public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeComma
             if (result.Succeeded) { return "Succcesfully confirmed email address"; }
             else
             {
-                return "There was a problem confirming email";
+                return "Could not confirm email address";
             }
         }
         else

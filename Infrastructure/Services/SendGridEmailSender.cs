@@ -24,7 +24,6 @@ namespace Infrastructure.Services
 
         public async Task SendEmailAsync(string toEmail, string subject, string message)
         {
-            //string sendGridApiKey = configuration["SendGridApiKey"];
             if (string.IsNullOrEmpty(Options.SendGridApiKey))
             {
                 throw new Exception("The 'SendGridApiKey' is not configured");

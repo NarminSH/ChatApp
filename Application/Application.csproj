@@ -29,6 +29,8 @@
     <None Remove="Connections\Commands\UpdateConnection\" />
     <None Remove="Connections\Commands\DeleteConnection\" />
     <None Remove="Employees\Commands\ConfirmEmployee\" />
+    <None Remove="Employees\Commands\ForgetPassword\" />
+    <None Remove="Employees\Commands\ChangePassword\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -49,6 +51,8 @@
     <Folder Include="Connections\Commands\UpdateConnection\" />
     <Folder Include="Connections\Commands\DeleteConnection\" />
     <Folder Include="Employees\Commands\ConfirmEmployee\" />
+    <Folder Include="Employees\Commands\ForgetPassword\" />
+    <Folder Include="Employees\Commands\ChangePassword\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

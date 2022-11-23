@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Employees.Commands.ConfirmEmployee;
 using Application.Employees.Commands.CreateEmployee;
+using Application.Employees.Commands.ForgetPassword;
 using Application.Employees.Commands.LoginEmployee;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,24 +19,37 @@ namespace WebUI.Controllers
     {
       
         [HttpPost("register")]
-        public async Task<IdentityResult> Post([FromBody] CreateEmployeeCommand value)
+        public async Task<IdentityResult> Register([FromBody] CreateEmployeeCommand value)
         {
            
-            IdentityResult res = await Mediator.Send(value);
-            return res;
+            IdentityResult result = await Mediator.Send(value);
+            return result;
         }
         [HttpPost("login")]
         public async Task<string> Login([FromBody] LoginEmployeeCommand command)
         {
-            string res = await Mediator.Send(command);
-            return res;
+            string result = await Mediator.Send(command);
+            return result;
         }
         [HttpPost("confirmEmail")]
         public async Task<string> ConfirmEmail([FromBody] ConfirmEmployeeCommand command)
         {
-            string res = await Mediator.Send(command);
-            return res;
+            string result = await Mediator.Send(command);
+            return result;
         }
+        [HttpPost("forgetPassword")]
+        public async Task<string> ForgetPassword([FromBody] ForgetPasswordCommand command)
+        {
+            string result = await Mediator.Send(command);
+            return result;
+        }
+
+        //[HttpPost("forgetPasswordConfirmation")]
+        //public async Task<string> ForgetPasswordConfirmation([FromBody] ForgetPasswordCommand command)
+        //{
+        //    string result = await Mediator.Send(command);
+        //    return result;
+        //}
     }
 } 
 
