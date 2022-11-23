@@ -40,14 +40,9 @@ public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand,
         if (existedUser is null) throw new NotFoundException();
         bool result = await _userManager.CheckPasswordAsync(existedUser, entity.PasswordHash);
         if (!result) return "Username or password is incorrect";
-        bool canSignIn = await _signInManager.CanSignInAsync(entity);
-        if (!canSignIn)
-        {
-            return "Email is not confirmed";
-        }
+        if (!existedUser.EmailConfirmed){ return "Email is not confirmed";}
         else
         {
-
         List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, existedUser.Id),

@@ -36,7 +36,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         //todo add if else statement
     }
 
-    public async Task<T> GetById(int id)
+    public async Task<T> GetById(string id)
     {
         var result = await _dbSet.FindAsync(id);
         return result;

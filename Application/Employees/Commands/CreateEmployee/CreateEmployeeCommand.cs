@@ -5,6 +5,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 
 namespace Application.Employees.Commands.CreateEmployee;
 public class CreateEmployeeCommand : IRequest<IdentityResult>, IMapFrom<Employee>
@@ -20,21 +21,31 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
     private readonly UserManager<Employee> _userManager;
     private readonly IMapper _mapper;
     private readonly IEmailSender _mailService;
-
+    private readonly LinkGenerator _linkGenerator;
+    private readonly IHttpContextAccessor _httpContext;
 
     public CreateEmployeeCommandHandler(UserManager<Employee> userManager, IMapper mapper,
-        IEmailSender emailSender)
+        IEmailSender emailSender, LinkGenerator linkGenerator, IHttpContextAccessor http)
     {
         this._mapper = mapper;
         this._userManager = userManager;
-        this._mailService = emailSender;
+        this._mailService = emailSender; 
+        this._linkGenerator = linkGenerator;
+        this._httpContext = http;
     }
+
     public async Task<IdentityResult> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
-
         var entity = _mapper.Map<Employee>(request);
         IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
-        await _mailService.SendEmailAsync(entity.Email, "Register confirmation", "<h1> Please confirm your email</h1>");
+        var code = await _userManager.GenerateEmailConfirmationTokenAsync(entity);
+        Console.WriteLine("..............");
+        Console.WriteLine(code);
+        Console.WriteLine("..............");
+        string url = _linkGenerator.GetUriByAction( _httpContext.HttpContext,
+            action: "ConfirmEmail", controller: "Employees", values:  new { code, entity.Id });
+        string message = "Please confirm your email by clicking here " + url;
+        await _mailService.SendEmailAsync(entity.Email, "Register confirmation", message);
         return result;
     }
 

@@ -3,6 +3,8 @@ using Domain.Entities;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+builder.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
 var app = builder.Build();
 

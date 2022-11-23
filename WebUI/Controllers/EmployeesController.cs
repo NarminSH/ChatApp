@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Employees.Commands.ConfirmEmployee;
 using Application.Employees.Commands.CreateEmployee;
 using Application.Employees.Commands.LoginEmployee;
 using Microsoft.AspNetCore.Identity;
@@ -25,6 +26,12 @@ namespace WebUI.Controllers
         }
         [HttpPost("login")]
         public async Task<string> Login([FromBody] LoginEmployeeCommand command)
+        {
+            string res = await Mediator.Send(command);
+            return res;
+        }
+        [HttpPost("confirmEmail")]
+        public async Task<string> ConfirmEmail([FromBody] ConfirmEmployeeCommand command)
         {
             string res = await Mediator.Send(command);
             return res;

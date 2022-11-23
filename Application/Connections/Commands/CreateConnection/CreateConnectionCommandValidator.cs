@@ -24,8 +24,7 @@ public class CreateConnectionCommandValidator : AbstractValidator<CreateConnecti
         RuleFor(v => v.SenderId).NotEmpty().WithMessage("Sender id is required")
             .Must(IfUserExistsInDb).WithMessage("Sender with provided id does not exist");
 
-    }
-        
+    } 
     private bool IfUserExistsInDb(string id)
     {
         var user = _userManager.Users.Where(u => u.Id == id).First();

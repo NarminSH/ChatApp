@@ -21,6 +21,7 @@ namespace WebUI.Controllers
             bool res = await Mediator.Send(value);
             return res;
         }
+       
     }
 }
 

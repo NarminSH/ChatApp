@@ -22,13 +22,11 @@ namespace Application.Connections.Commands.CreateConnection
             _mapper = mapper;
             _connectionRepository = connection;
         }
-
         public Task<bool> Handle(CreateConnectionCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<Connection>(request);
             var result = _connectionRepository.AddAsync(entity);
             return result;
-            
         }
     }
 }

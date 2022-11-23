@@ -33,7 +33,7 @@ namespace Infrastructure.Services
             var client = new SendGridClient(Options.SendGridApiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("nshivakhanova@gmail.com"),
+                From = new EmailAddress("yashar.xaspoladov@gmail.com"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
