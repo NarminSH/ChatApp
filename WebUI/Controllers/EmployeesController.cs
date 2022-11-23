@@ -44,12 +44,12 @@ namespace WebUI.Controllers
             return result;
         }
 
-        //[HttpPost("forgetPasswordConfirmation")]
-        //public async Task<string> ForgetPasswordConfirmation([FromBody] ForgetPasswordCommand command)
-        //{
-        //    string result = await Mediator.Send(command);
-        //    return result;
-        //}
+        [HttpPost("forgetPasswordConfirmation")]
+        public async Task<string> ForgetPasswordConfirmation([FromBody] ForgetPasswordCommandConfirm command)
+        {
+            string result = await Mediator.Send(command);
+            return result;
+        }
     }
 } 
 

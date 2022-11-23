@@ -36,6 +36,8 @@ public class ForgetPasswordCommandHandler : IRequestHandler<ForgetPasswordComman
         if (existedUser!=null)
         {
             string token = await _userManager.GeneratePasswordResetTokenAsync(existedUser);
+            Console.WriteLine(token);
+            Console.WriteLine("...............");
             string url = _linkGenerator.GetUriByAction(_httpContext.HttpContext,
             action: "ForgetPassword", controller: "Employees", values: new { token, existedUser.Email });
             string message = "Please click to reset password " + url;
