@@ -1,16 +1,19 @@
 ﻿using System;
+using Application.Common;
 using Application.Repositories.Abstraction;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System.Net;
+using Application.Common.Exceptions;
 
 namespace Application.Employees.Commands.ConfirmEmployee;
-public class ConfirmEmployeeCommand : IRequest<string>
+public class ConfirmEmployeeCommand : IRequest<ResponseMessage>
 {
     public string Id { get; set; } = null!;
     public string Token { get; set; } = null!;
 }
-public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeCommand, string>
+public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeCommand, ResponseMessage>
 {
     private readonly IEmployeeRepository _employeeRepository;
     private readonly UserManager<Employee> _userManager;
@@ -21,21 +24,29 @@ public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeComma
         this._userManager = userManager;
     }
 
-    public async Task<string> Handle(ConfirmEmployeeCommand request, CancellationToken cancellationToken)
+    public async Task<ResponseMessage> Handle(ConfirmEmployeeCommand request, CancellationToken cancellationToken)
     {
         Employee employee = await _employeeRepository.GetById(request.Id);
         if (employee != null)
         {
             var result = await _userManager.ConfirmEmailAsync(employee, request.Token);
-            if (result.Succeeded) { return "Succcesfully confirmed email address"; }
+            if (result.Succeeded) {
+                return new ResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = "Succcesfully confirmed email address"
+                };
+            }
             else
             {
-                return "Could not confirm email address";
+                return new ResponseMessage { StatusCode = HttpStatusCode.BadRequest,
+                Message = "Could not confirm email address"
+                };
             }
         }
         else
         {
-            return "Could not find user";
+           throw new NotFoundException();
         }
     }
 }

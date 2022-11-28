@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Application.Common
 {
-    public class Response
+    public class ResponseMessage
     {
         public HttpStatusCode StatusCode { get; set; }
         public string? Message { get; set; }

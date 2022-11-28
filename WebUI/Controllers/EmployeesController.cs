@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Common;
 using Application.Employees.Commands.ChangePassword;
 using Application.Employees.Commands.ConfirmEmployee;
 using Application.Employees.Commands.CreateEmployee;
@@ -21,45 +22,45 @@ namespace WebUI.Controllers
     {
       
         [HttpPost("register")]
-        public async Task<IdentityResult> Register([FromBody] CreateEmployeeCommand value)
+        public async Task<ResponseMessage> Register([FromBody] CreateEmployeeCommand value)
         {
-           
-            IdentityResult result = await Mediator.Send(value);
+
+            ResponseMessage result = await Mediator.Send(value);
             return result;
         }
         [HttpPost("login")]
-        public async Task<string> Login([FromBody] LoginEmployeeCommand command)
+        public async Task<ResponseMessage> Login([FromBody] LoginEmployeeCommand command)
         {
-            string result = await Mediator.Send(command);
+            ResponseMessage result = await Mediator.Send(command);
             return result;
         }
         [HttpPost("confirmEmail")]
-        public async Task<string> ConfirmEmail([FromBody] ConfirmEmployeeCommand command)
+        public async Task<ResponseMessage> ConfirmEmail([FromBody] ConfirmEmployeeCommand command)
         {
-            string result = await Mediator.Send(command);
+            ResponseMessage result = await Mediator.Send(command);
             return result;
         }
         [HttpPost("forgetPassword")]
-        public async Task<string> ForgetPassword([FromBody] ForgetPasswordCommand command)
+        public async Task<ResponseMessage> ForgetPassword([FromBody] ForgetPasswordCommand command)
         {
-            string result = await Mediator.Send(command);
+            ResponseMessage result = await Mediator.Send(command);
             return result;
         }
 
         [HttpPost("forgetPasswordConfirmation")]
-        public async Task<string> ForgetPasswordConfirmation([FromBody] ForgetPasswordCommandConfirm command)
+        public async Task<ResponseMessage> ForgetPasswordConfirmation([FromBody] ForgetPasswordCommandConfirm command)
         {
-            string result = await Mediator.Send(command);
+            ResponseMessage result = await Mediator.Send(command);
             return result;
         }
 
         [HttpPost("changePassword")]
         [Authorize]
-        public async Task<string> ChangePassword([FromBody] ChangePasswordCommand command)
+        public async Task<ResponseMessage> ChangePassword([FromBody] ChangePasswordCommand command)
         {
             var userEmail = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
             command.Email = userEmail;
-            string result = await Mediator.Send(command);
+            ResponseMessage result = await Mediator.Send(command);
             return result;
         }
     }
