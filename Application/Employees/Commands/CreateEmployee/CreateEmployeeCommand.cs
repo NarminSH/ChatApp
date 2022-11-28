@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Employees.Commands.CreateEmployee;
 public class CreateEmployeeCommand : IRequest<IdentityResult>, IMapFrom<Employee>
@@ -39,6 +40,9 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
         var entity = _mapper.Map<Employee>(request);
         IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(entity);
+        Console.WriteLine(".................");
+        Console.WriteLine("Register confirmation token is: " +token);
+        Console.WriteLine(".................");
         string url = _linkGenerator.GetUriByAction( _httpContext.HttpContext,
             action: "ConfirmEmail", controller: "Employees", values:  new { token, entity.Id });
         string message = "Please confirm your email by clicking here " + url;

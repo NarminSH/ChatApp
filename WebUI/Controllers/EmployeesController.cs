@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Employees.Commands.ChangePassword;
 using Application.Employees.Commands.ConfirmEmployee;
 using Application.Employees.Commands.CreateEmployee;
 using Application.Employees.Commands.ForgetPassword;
 using Application.Employees.Commands.LoginEmployee;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +50,14 @@ namespace WebUI.Controllers
         public async Task<string> ForgetPasswordConfirmation([FromBody] ForgetPasswordCommandConfirm command)
         {
             string result = await Mediator.Send(command);
+            return result;
+        }
+
+        [HttpPost("changePassword")]
+        [Authorize]
+        public async Task<bool> ChangePassword([FromBody] ChangePasswordCommand command)
+        {
+            bool result = await Mediator.Send(command);
             return result;
         }
     }
