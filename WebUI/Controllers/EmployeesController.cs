@@ -55,9 +55,11 @@ namespace WebUI.Controllers
 
         [HttpPost("changePassword")]
         [Authorize]
-        public async Task<bool> ChangePassword([FromBody] ChangePasswordCommand command)
+        public async Task<string> ChangePassword([FromBody] ChangePasswordCommand command)
         {
-            bool result = await Mediator.Send(command);
+            var userEmail = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+            command.Email = userEmail;
+            string result = await Mediator.Send(command);
             return result;
         }
     }
