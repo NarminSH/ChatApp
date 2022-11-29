@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net;
+using Application.Common.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using SendGrid.Helpers.Mail;
 
 
 namespace Infrastructure.Repositories.Implementation;
@@ -38,9 +41,24 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task<T> GetById(string id)
     {
-        var result = await _dbSet.FindAsync(id);
-        return result;
-        //todo add if else statement
+        var entity = await _dbSet.FindAsync(id);
+        if (entity != null)
+        {
+            _context.Entry(entity).State = EntityState.Detached;
+            return entity;
+        }
+        else { throw new NotFoundException(); }
+    }
+
+    public async Task<T> GetByIdInt(int id)
+    {
+        var entity = await _dbSet.FindAsync(id);
+        if (entity!=null)
+        {
+        _context.Entry(entity).State = EntityState.Detached;
+        return entity;
+        }
+        else { throw new NotFoundException(); }
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()
@@ -50,13 +68,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         //todo add if else statement
     }
 
-    public bool Update(T entity)
+    public async Task<bool> Update(T entity)
     {
         _dbSet.Update(entity);
-        _context.SaveChanges();
-        //_context.Entry
+        if(await _context.SaveChangesAsync() >= 1) { return true; }
+        else { return false; }
         //todo save
-        return true;
+
     }
 }
 

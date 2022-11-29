@@ -27,7 +27,7 @@ public class CreateConnectionCommandValidator : AbstractValidator<CreateConnecti
     } 
     private bool IfUserExistsInDb(string id)
     {
-        var user = _userManager.Users.Where(u => u.Id == id).First();
+        var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
         if (user != null) return true;
         else return false;
     }

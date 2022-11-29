@@ -8,6 +8,8 @@ namespace Domain.Entities
         public bool IsPrivate { get; set; }
         public string SenderId { get; set; } = null!;
         public string ReceiverId { get; set; } = null!;
+        public ICollection<Employee>? Employees { get; set; }
+        public ICollection<Post>? Posts { get; set; }
     }
 }
 

@@ -8,7 +8,8 @@ namespace Application.Repositories.Abstraction
         bool Delete(T entity);
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetById(string id);
-        bool Update(T entity);
+        Task<T> GetByIdInt(int id);
+        Task<bool> Update(T entity);
     }
 }
 

@@ -27,26 +27,19 @@ public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeComma
     public async Task<ResponseMessage> Handle(ConfirmEmployeeCommand request, CancellationToken cancellationToken)
     {
         Employee employee = await _employeeRepository.GetById(request.Id);
-        if (employee != null)
-        {
-            var result = await _userManager.ConfirmEmailAsync(employee, request.Token);
-            if (result.Succeeded) {
-                return new ResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Message = "Succcesfully confirmed email address"
-                };
-            }
-            else
+        var result = await _userManager.ConfirmEmailAsync(employee, request.Token);
+        if (result.Succeeded) {
+            return new ResponseMessage
             {
-                return new ResponseMessage { StatusCode = HttpStatusCode.BadRequest,
-                Message = "Could not confirm email address"
-                };
-            }
+                StatusCode = HttpStatusCode.OK,
+                Message = "Succcesfully confirmed email address"
+            };
         }
         else
         {
-           throw new NotFoundException();
+            return new ResponseMessage { StatusCode = HttpStatusCode.BadRequest,
+            Message = "Could not confirm email address"
+            };
         }
     }
 }

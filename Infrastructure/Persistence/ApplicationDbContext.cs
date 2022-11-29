@@ -22,10 +22,10 @@ namespace Infrastructure.Persistence
 
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        DbSet<Attachment> Attachments { get; set; }
-        DbSet<Reaction> Reactions { get; set; }
-        DbSet<EmployeeChannel> EmployeeChannels { get; set; }
-        DbSet<Connection> Connections { get; set; }
+        public virtual DbSet<Attachment> Attachments { get; set; }
+        public virtual DbSet<Reaction> Reactions { get; set; }
+        public virtual DbSet<EmployeeChannel> EmployeeChannels { get; set; }
+        public virtual DbSet<Connection> Connections { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
