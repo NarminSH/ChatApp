@@ -7,6 +7,7 @@ namespace Domain.Entities
     {
         public int ChannelId { get; set; }
         public Connection Channel { get; set; }
+        //todo change int to strin and migrate db again
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
         public string Message { get; set; }
