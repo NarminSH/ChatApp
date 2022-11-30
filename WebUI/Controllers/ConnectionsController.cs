@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Common;
+using Application.Connections.Commands.AddUserConnection;
 using Application.Connections.Commands.CreateConnection;
 using Application.Connections.Commands.DeleteConnection;
 using Application.Connections.Commands.UpdateConnection;
@@ -57,6 +58,13 @@ namespace WebUI.Controllers
         public async Task<ResponseMessage> GetUserMessages([FromBody] UserDirectMessagesQuery query)
         {
             ResponseMessage res = await Mediator.Send(query);
+            return res;
+        }
+
+        [HttpPatch("addUserToConnection")]
+        public async Task<ResponseMessage> AddUserToConnection([FromBody] AddUserToConnectionCommand command)
+        {
+            ResponseMessage res = await Mediator.Send(command);
             return res;
         }
 

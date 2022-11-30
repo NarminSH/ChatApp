@@ -32,6 +32,7 @@
     <None Remove="Employees\Commands\ForgetPassword\" />
     <None Remove="Employees\Commands\ChangePassword\" />
     <None Remove="Connections\Queries\" />
+    <None Remove="Connections\Commands\AddUserConnection\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -55,6 +56,7 @@
     <Folder Include="Employees\Commands\ForgetPassword\" />
     <Folder Include="Employees\Commands\ChangePassword\" />
     <Folder Include="Connections\Queries\" />
+    <Folder Include="Connections\Commands\AddUserConnection\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

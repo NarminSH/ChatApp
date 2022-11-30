@@ -7,7 +7,7 @@ namespace Application.Repositories.Abstraction
         //Task<bool> AddRangeAsync(IEnumerable<T> entities);
         bool Delete(T entity);
         Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetById(string id);
+        Task<T>  GetById(string id);
         Task<T> GetByIdInt(int id);
         Task<bool> Update(T entity);
     }

@@ -82,9 +82,9 @@ public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand,
         string tokenStr = new JwtSecurityTokenHandler().WriteToken(token);
         return new ResponseMessage
         {
-            StatusCode = HttpStatusCode.Unauthorized,
-            Message = tokenStr
-
+            StatusCode = HttpStatusCode.OK,
+            Message = "Successfully logged in!",
+            Data = tokenStr
         };
         }
 

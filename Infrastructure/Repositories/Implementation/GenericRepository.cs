@@ -18,10 +18,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     }
     public async Task<bool> AddAsync(T entity)
     {
-        _dbSet.AddAsync(entity);
+        await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
+        //_context.Entry(entity).State = EntityState.Detached;
         return true;
-        //todo add if else statement
     }
 
     public virtual async Task<bool> AddRangeAsync(IEnumerable<T> entities)
@@ -30,13 +30,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return true;
     }
 
-
     public bool Delete(T entity)
     {
         _dbSet.Remove(entity);
         _context.SaveChanges();
         return true;
-        //todo add if else statement
     }
 
     public async Task<T> GetById(string id)
@@ -44,7 +42,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         var entity = await _dbSet.FindAsync(id);
         if (entity != null)
         {
-            _context.Entry(entity).State = EntityState.Detached;
             return entity;
         }
         else { throw new NotFoundException(); }
@@ -67,13 +64,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return result;
         //todo add if else statement
     }
-
+        
     public async Task<bool> Update(T entity)
     {
         _dbSet.Update(entity);
         if(await _context.SaveChangesAsync() >= 1) { return true; }
         else { return false; }
-        //todo save
 
     }
 }

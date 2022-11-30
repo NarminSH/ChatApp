@@ -27,6 +27,13 @@ public class ConfirmEmployeeCommandHandler: IRequestHandler<ConfirmEmployeeComma
     public async Task<ResponseMessage> Handle(ConfirmEmployeeCommand request, CancellationToken cancellationToken)
     {
         Employee employee = await _employeeRepository.GetById(request.Id);
+        if(employee.EmailConfirmed == true) {
+            return new ResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Message = "Email is already confirmed!"
+            };
+        }
         var result = await _userManager.ConfirmEmailAsync(employee, request.Token);
         if (result.Succeeded) {
             return new ResponseMessage
