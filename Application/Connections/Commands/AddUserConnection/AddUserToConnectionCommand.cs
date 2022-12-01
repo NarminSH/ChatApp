@@ -10,7 +10,6 @@ namespace Application.Connections.Commands.AddUserConnection;
 
 public class AddUserToConnectionCommand : IRequest<ResponseMessage>, IMapFrom<EmployeeChannel>
 {
-    //todo int not null
     public int ChannelId { get; set; }
     public string EmployeeId { get; set; } = null!;
 }
@@ -31,10 +30,18 @@ public class AddUserToConnectionCommandHandler : IRequestHandler<AddUserToConnec
         Connection connection = await _connectionRepository.GetByIdInt(request.ChannelId);
         var entity = _mapper.Map<EmployeeChannel>(request);
         var result = await _employeeChannel.AddAsync(entity);
+        if (result)
+        {
         return new ResponseMessage
         {
             StatusCode = HttpStatusCode.OK,
-            Data = result
+            Message = "Added user"
+        };
+        }
+        return new ResponseMessage
+        {
+            StatusCode = HttpStatusCode.BadRequest,
+            Message = "Problem occured"
         };
 
     }

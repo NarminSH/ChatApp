@@ -20,7 +20,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
-        //_context.Entry(entity).State = EntityState.Detached;
         return true;
     }
 

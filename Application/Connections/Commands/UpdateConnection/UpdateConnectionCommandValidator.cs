@@ -27,9 +27,9 @@ public class UpdateConnectionCommandValidator : AbstractValidator<UpdateConnecti
         //RuleFor(v => v.SenderId).NotEmpty().WithMessage("Sender id is required").
         //    Must(IfUserExistsInDb).WithMessage("Sender with provided id does not exist");
 
-        RuleFor(c => c.IsChannel).NotEmpty().WithMessage("IsChannel field is required");
+        //RuleFor(c => c.IsChannel).NotEmpty().WithMessage("IsChannel field is required");
         
-        RuleFor(c => c.IsPrivate).NotEmpty().WithMessage("IsPrivate field is required");
+        //RuleFor(c => c.IsPrivate).NotEmpty().WithMessage("IsPrivate field is required");
 
     }
 

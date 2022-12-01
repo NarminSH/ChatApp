@@ -20,6 +20,7 @@ public class DeleteConnectionCommandHandler : IRequestHandler<DeleteConnectionCo
     {
         Connection entity = await _connectionRepository.GetByIdInt(request.connectionId);
         bool result = _connectionRepository.Delete(entity);
+
         return new ResponseMessage {  StatusCode = System.Net.HttpStatusCode.OK,
         Message = "Deleted the Connection successfully!"};
     }

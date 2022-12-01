@@ -25,8 +25,16 @@ namespace Application.Connections.Commands.CreateConnection
         {
             var entity = _mapper.Map<Connection>(request);
             var result = await _connectionRepository.AddAsync(entity);
+            if (result)
+            {
             return new ResponseMessage { StatusCode = System.Net.HttpStatusCode.Created,
             Message = "Created the Connection successfully!"};
+            }
+            return new ResponseMessage
+            {
+                StatusCode = System.Net.HttpStatusCode.BadRequest,
+                Message = "Problem occured while creating connection"
+            };
         }
     }
 }

@@ -9,12 +9,9 @@ namespace Application.Posts.Commands.CreatePost;
 
 public class CreatePostCommandValidator : AbstractValidator<CreatePostCommand>
 {
-    private readonly IPostRepository _postRepository;
     private readonly UserManager<Employee> _userManager;
-    public CreatePostCommandValidator(IPostRepository repository,
-        UserManager<Employee> userManager)
+    public CreatePostCommandValidator(UserManager<Employee> userManager)
     {
-        this._postRepository = repository;
         this._userManager = userManager;
 
         RuleFor(v => v.ChannelId).NotEmpty().WithMessage("Channel Id is required");

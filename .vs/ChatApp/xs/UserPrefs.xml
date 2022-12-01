@@ -1,11 +1,8 @@
 ﻿<Properties StartupConfiguration="{2D9B42CE-A993-4805-9DE1-03C57A5DFA02}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Connections/Queries/UserDirectMessagesQuery.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebUI/Controllers/ConnectionsController.cs">
     <Files>
-      <File FileName="Application/Connections/Queries/UserChannelsQuery.cs" Line="23" Column="34" IsPinned="True" />
-      <File FileName="Infrastructure/Repositories/Implementation/EmployeeChannelRepository.cs" Line="26" Column="22" IsPinned="True" />
-      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommandValidator.cs" Line="35" Column="1" />
-      <File FileName="Application/Connections/Queries/UserDirectMessagesQuery.cs" Line="31" Column="39" />
+      <File FileName="WebUI/Controllers/ConnectionsController.cs" Line="62" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,13 +10,15 @@
           <Node name="ChatApp" expanded="True">
             <Node name="src" expanded="True">
               <Node name="Application" expanded="True">
+                <Node name="Common" expanded="True" />
                 <Node name="Connections" expanded="True">
                   <Node name="Commands" expanded="True">
+                    <Node name="AddUserConnection" expanded="True" />
+                    <Node name="CreateConnection" expanded="True" />
+                    <Node name="DeleteConnection" expanded="True" />
                     <Node name="UpdateConnection" expanded="True" />
                   </Node>
-                  <Node name="Queries" expanded="True">
-                    <Node name="UserDirectMessagesQuery.cs" selected="True" />
-                  </Node>
+                  <Node name="Queries" expanded="True" />
                 </Node>
                 <Node name="Dtos" expanded="True">
                   <Node name="ConnectionDtos" expanded="True" />
@@ -36,20 +35,13 @@
                     <Node name="CreatePost" expanded="True" />
                   </Node>
                 </Node>
-                <Node name="Repositories" expanded="True">
-                  <Node name="Abstraction" expanded="True" />
-                </Node>
               </Node>
               <Node name="Domain" expanded="True">
                 <Node name="Common" expanded="True" />
-                <Node name="Entities" expanded="True" />
               </Node>
               <Node name="Infrastructure" expanded="True">
                 <Node name="Dependencies" expanded="True" />
                 <Node name="Persistence" expanded="True" />
-                <Node name="Repositories" expanded="True">
-                  <Node name="Implementation" expanded="True" />
-                </Node>
                 <Node name="Services" expanded="True" />
               </Node>
               <Node name="WebUI" expanded="True">
@@ -67,7 +59,9 @@
   <MonoDevelop.Ide.ItemProperties.src.WebUI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/narmin/Projects/ChatApp/Application/Connections/Commands/AddUserConnection/AddUserToConnectionCommand.cs" relfile="Application/Connections/Commands/AddUserConnection/AddUserToConnectionCommand.cs" line="30" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

@@ -18,19 +18,9 @@ public class CreateConnectionCommandValidator : AbstractValidator<CreateConnecti
         RuleFor(c => c.Name).NotEmpty().WithMessage("Connection name is required").
         MaximumLength(60).WithMessage("Name must not exceed 60 characters");
 
-        //RuleFor(v => v.ReceiverId).NotEmpty().WithMessage("Receiver id is required")
-        //    .Must(IfUserExistsInDb).WithMessage("Receiver with provided id does not exist");
-
-        //RuleFor(v => v.SenderId).NotEmpty().WithMessage("Sender id is required")
-        //    .Must(IfUserExistsInDb).WithMessage("Sender with provided id does not exist");
 
     } 
-    private bool IfUserExistsInDb(string id)
-    {
-        var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
-        if (user != null) return true;
-        else return false;
-    }
+    
 
 }
 

@@ -5,6 +5,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace Application.Posts.Commands.CreatePost;
@@ -19,23 +20,35 @@ public class CreatePostCommand : IRequest<ResponseMessage>, IMapFrom<Post>
 
 public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, ResponseMessage>
 {
-    private readonly UserManager<Employee> _userManager;
+    private readonly IConnectionRepository _connectionRepository;
+    private readonly IPostRepository _postRepository;
     private readonly IMapper _mapper;
 
-    public CreatePostCommandHandler(UserManager<Employee> userManager, IMapper mapper)
+    public CreatePostCommandHandler(IPostRepository postRepository, IMapper mapper,
+        IConnectionRepository connectionRepository)
     {
         this._mapper = mapper;
-        this._userManager = userManager;
+        this._postRepository = postRepository;
+        this._connectionRepository = connectionRepository;
     }
 
     public async Task<ResponseMessage> Handle(CreatePostCommand request, CancellationToken cancellationToken)
     {
-        var entity = _mapper.Map<Employee>(request);
-        
+        await _connectionRepository.GetByIdInt(request.ChannelId);
+        Post entity = _mapper.Map<Post>(request);
+        bool result = await _postRepository.AddAsync(entity);
+        if (result)
+        {
+            return new ResponseMessage
+            {
+                StatusCode = System.Net.HttpStatusCode.Created,
+                Message = "Created the Post successfully!"
+            };
+        }
         return new ResponseMessage
         {
-            StatusCode = System.Net.HttpStatusCode.OK,
-            Message = "Successfully created the user!"
+            StatusCode = System.Net.HttpStatusCode.BadRequest,
+            Message = "Problem occured while publishing Post"
         };
     }
 
