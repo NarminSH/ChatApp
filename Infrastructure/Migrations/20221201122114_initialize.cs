@@ -30,6 +30,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Fullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SignalRId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -48,6 +49,23 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Connections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsChannel = table.Column<bool>(type: "bit", nullable: false),
+                    IsPrivate = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Connections", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,39 +175,13 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Connections",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsChannel = table.Column<bool>(type: "bit", nullable: false),
-                    IsPrivate = table.Column<bool>(type: "bit", nullable: false),
-                    SenderId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReceiverId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Connections", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Connections_AspNetUsers_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "EmployeeChannels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ChannelId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -197,10 +189,11 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_EmployeeChannels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeChannels_AspNetUsers_EmployeeId1",
-                        column: x => x.EmployeeId1,
+                        name: "FK_EmployeeChannels_AspNetUsers_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EmployeeChannels_Connections_ChannelId",
                         column: x => x.ChannelId,
@@ -216,8 +209,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ChannelId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReplyPostId = table.Column<int>(type: "int", nullable: true),
                     IsEdited = table.Column<bool>(type: "bit", nullable: false),
@@ -228,10 +220,11 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_AspNetUsers_EmployeeId1",
-                        column: x => x.EmployeeId1,
+                        name: "FK_Posts_AspNetUsers_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Posts_Connections_ChannelId",
                         column: x => x.ChannelId,
@@ -335,19 +328,14 @@ namespace Infrastructure.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Connections_EmployeeId",
-                table: "Connections",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EmployeeChannels_ChannelId",
                 table: "EmployeeChannels",
                 column: "ChannelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeChannels_EmployeeId1",
+                name: "IX_EmployeeChannels_EmployeeId",
                 table: "EmployeeChannels",
-                column: "EmployeeId1");
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_ChannelId",
@@ -355,9 +343,9 @@ namespace Infrastructure.Migrations
                 column: "ChannelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_EmployeeId1",
+                name: "IX_Posts_EmployeeId",
                 table: "Posts",
-                column: "EmployeeId1");
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_ReplyPostId",
@@ -403,10 +391,10 @@ namespace Infrastructure.Migrations
                 name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Connections");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Connections");
         }
     }
 }

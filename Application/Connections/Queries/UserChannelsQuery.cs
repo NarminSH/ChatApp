@@ -16,12 +16,15 @@ namespace Application.Connections.Queries
     public class UserChannelsQueryHandler : IRequestHandler<UserChannelsQuery,ResponseMessage>
     {
         private readonly IConnectionRepository _connectionRepositorty;
+        private readonly IEmployeeChannelRepository _employeeChannel;
         private readonly IMapper _mapper;
 
-        public UserChannelsQueryHandler(IConnectionRepository repository, IMapper mapper)
+        public UserChannelsQueryHandler(IConnectionRepository repository, IMapper mapper,
+            IEmployeeChannelRepository channelRepository)
         {
             this._connectionRepositorty = repository;
             this._mapper = mapper;
+            _employeeChannel = channelRepository;
         }
 
         public async Task<ResponseMessage> Handle(UserChannelsQuery request, CancellationToken cancellationToken)

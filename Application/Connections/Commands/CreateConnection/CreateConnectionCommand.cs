@@ -10,8 +10,6 @@ namespace Application.Connections.Commands.CreateConnection
         public string Name { get; set; } = null!;
         public bool IsChannel { get; set; }
         public bool IsPrivate { get; set; }
-        public string SenderId { get; set; } = null!;
-        public string ReceiverId { get; set; } = null!;
     }
     public class CreateConnectionCommandHandler: IRequestHandler<CreateConnectionCommand, bool>
     {
@@ -26,6 +24,7 @@ namespace Application.Connections.Commands.CreateConnection
         {
             var entity = _mapper.Map<Connection>(request);
             var result = _connectionRepository.AddAsync(entity);
+            //todo repsonse message
             return result;
         }
     }

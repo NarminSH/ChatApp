@@ -6,9 +6,7 @@ namespace Domain.Entities
         public string Name { get; set; } = null!;
         public bool IsChannel { get; set; }
         public bool IsPrivate { get; set; }
-        public string SenderId { get; set; } = null!;
-        public string ReceiverId { get; set; } = null!;
-        public ICollection<Employee>? Employees { get; set; }
+        public ICollection<EmployeeChannel>? EmployeeChannels { get; set; }
         public ICollection<Post>? Posts { get; set; }
     }
 }

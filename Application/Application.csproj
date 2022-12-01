@@ -36,6 +36,7 @@
     <None Remove="Posts\" />
     <None Remove="Posts\Commands\" />
     <None Remove="Posts\Commands\CreatePost\" />
+    <None Remove="Dtos\PostDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -63,6 +64,7 @@
     <Folder Include="Posts\" />
     <Folder Include="Posts\Commands\" />
     <Folder Include="Posts\Commands\CreatePost\" />
+    <Folder Include="Dtos\PostDtos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

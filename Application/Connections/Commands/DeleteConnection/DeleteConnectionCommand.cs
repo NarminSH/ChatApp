@@ -13,6 +13,7 @@ public class DeleteConnectionCommandHandler : IRequestHandler<DeleteConnectionCo
 {
     private readonly IMapper _mapper;
     private readonly IConnectionRepository _connectionRepository;
+    
     public DeleteConnectionCommandHandler(IMapper mapper, IConnectionRepository connection)
     {
         _mapper = mapper;

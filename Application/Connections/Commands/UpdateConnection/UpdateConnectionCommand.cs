@@ -4,6 +4,7 @@ using Application.Common.Exceptions;
 using Application.Repositories.Abstraction;
 using AutoMapper;
 using MediatR;
+using System.Net;
 
 namespace Application.Connections.Commands.UpdateConnection
 {
@@ -13,8 +14,6 @@ namespace Application.Connections.Commands.UpdateConnection
         public string Name { get; set; } = null!;
         public bool IsChannel { get; set; } 
         public bool IsPrivate { get; set; }
-        public string SenderId { get; set; } = null!;
-        public string ReceiverId { get; set; } = null!;
     }
     public class UpdateConnectionCommandHandler : IRequestHandler<UpdateConnectionCommand, ResponseMessage>
     {
@@ -32,7 +31,7 @@ namespace Application.Connections.Commands.UpdateConnection
             bool result = await _connectionRepository.Update(entity);
             return new ResponseMessage
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Data = result
             };
             

@@ -6,7 +6,7 @@ namespace Domain.Entities
     {
         public int ChannelId { get; set; }
         public Connection Channel { get; set; } = null!;
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; } = null!;
         public Employee Employee { get; set; } = null!;
     }
 }

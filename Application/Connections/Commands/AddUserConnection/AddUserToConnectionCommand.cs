@@ -3,31 +3,37 @@ using Application.Common;
 using Application.Repositories.Abstraction;
 using AutoMapper;
 using MediatR;
+using System.Net;
 
 namespace Application.Connections.Commands.AddUserConnection;
 
 
-public class AddUserToConnectionCommand : IRequest<ResponseMessage>
+public class AddUserToConnectionCommand : IRequest<ResponseMessage>, IMapFrom<EmployeeChannel>
 {
-    public int Id { get; set; }
-    public string ReceiverId { get; set; } = null!;
+    //todo int not null
+    public int ChannelId { get; set; }
+    public string EmployeeId { get; set; } = null!;
 }
 public class AddUserToConnectionCommandHandler : IRequestHandler<AddUserToConnectionCommand, ResponseMessage>
 {
+    private readonly IEmployeeChannelRepository _employeeChannel;
     private readonly IConnectionRepository _connectionRepository;
-    public AddUserToConnectionCommandHandler(IConnectionRepository connection)
+    private readonly IMapper _mapper;
+    public AddUserToConnectionCommandHandler(IEmployeeChannelRepository repository,
+        IConnectionRepository connectionRepository, IMapper mapper)
     {
-        _connectionRepository = connection;
+        _employeeChannel = repository;
+        _connectionRepository = connectionRepository;
+        _mapper = mapper;
     }
     public async Task<ResponseMessage> Handle(AddUserToConnectionCommand request, CancellationToken cancellationToken)
     {
-        Connection connection = await _connectionRepository.GetByIdInt(request.Id);
-        connection.ReceiverId = request.ReceiverId;
-        //Connection entity = _mapper.Map<Connection>(request);
-        bool result = await _connectionRepository.Update(connection);
+        Connection connection = await _connectionRepository.GetByIdInt(request.ChannelId);
+        var entity = _mapper.Map<EmployeeChannel>(request);
+        var result = await _employeeChannel.AddAsync(entity);
         return new ResponseMessage
         {
-            StatusCode = System.Net.HttpStatusCode.OK,
+            StatusCode = HttpStatusCode.OK,
             Data = result
         };
 

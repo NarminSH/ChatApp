@@ -1,6 +1,7 @@
 ﻿using System;
 using Application.Dtos.BaseDtos;
 using Application.Dtos.EmployeeDtos;
+using Application.Dtos.PostDtos;
 
 namespace Application.Dtos.ConnectionDtos
 {
@@ -9,10 +10,8 @@ namespace Application.Dtos.ConnectionDtos
         public string Name { get; set; } = null!;
         public bool IsChannel { get; set; }
         public bool IsPrivate { get; set; }
-        public string SenderId { get; set; } = null!;
-        public string ReceiverId { get; set; } = null!;
-        public ICollection<GetEmployeeDto>? Employees { get; set; }
-        //todo complete dto
+        //public ICollection<GetEmployeeChannelDto>? EmployeeChannels { get; set; }
+        public ICollection<GetPostDto>? Posts { get; set; }
     }
 }
 

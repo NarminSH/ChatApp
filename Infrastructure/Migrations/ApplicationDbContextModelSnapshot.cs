@@ -64,9 +64,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<bool>("IsChannel")
                         .HasColumnType("bit");
 
@@ -77,20 +74,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReceiverId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Connections");
                 });
@@ -106,6 +93,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -181,10 +171,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmployeeId1")
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -194,7 +182,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ChannelId");
 
-                    b.HasIndex("EmployeeId1");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeeChannels");
                 });
@@ -213,10 +201,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmployeeId1")
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsEdited")
@@ -236,7 +222,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ChannelId");
 
-                    b.HasIndex("EmployeeId1");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ReplyPostId");
 
@@ -414,24 +400,19 @@ namespace Infrastructure.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Connection", b =>
-                {
-                    b.HasOne("Domain.Entities.Employee", null)
-                        .WithMany("Channels")
-                        .HasForeignKey("EmployeeId");
-                });
-
             modelBuilder.Entity("Domain.Entities.EmployeeChannel", b =>
                 {
                     b.HasOne("Domain.Entities.Connection", "Channel")
-                        .WithMany()
+                        .WithMany("EmployeeChannels")
                         .HasForeignKey("ChannelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId1");
+                        .WithMany("EmployeeChannels")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Channel");
 
@@ -441,14 +422,16 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Post", b =>
                 {
                     b.HasOne("Domain.Entities.Connection", "Channel")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("ChannelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId1");
+                        .WithMany("Posts")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.Post", "ReplyPost")
                         .WithMany("Children")
@@ -523,9 +506,18 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Domain.Entities.Connection", b =>
+                {
+                    b.Navigation("EmployeeChannels");
+
+                    b.Navigation("Posts");
+                });
+
             modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
-                    b.Navigation("Channels");
+                    b.Navigation("EmployeeChannels");
+
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("Domain.Entities.Post", b =>

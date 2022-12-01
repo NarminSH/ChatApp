@@ -7,7 +7,9 @@ namespace Domain.Entities
     {
         public string Fullname { get; set; } = null!;
         public string? SignalRId { get; set; }
-        public ICollection<Connection>? Channels { get; set; }
+        public ICollection<EmployeeChannel>? EmployeeChannels { get; set; }
+        public ICollection<Post>? Posts { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
 

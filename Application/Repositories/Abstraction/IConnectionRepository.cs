@@ -5,6 +5,7 @@ namespace Application.Repositories.Abstraction
     {
         public IQueryable<Connection> GetUsersChannels(string id);
         public IQueryable<Connection> GetUserDirectMessages(string id);
+
     }
 }
 

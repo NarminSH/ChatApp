@@ -49,7 +49,7 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
         string message = "Please confirm your email by clicking here " + url;
         await _mailService.SendEmailAsync(entity.Email, "Register confirmation", message);
         return new ResponseMessage { StatusCode = System.Net.HttpStatusCode.OK,
-            Message = "Successfully created the user!",
+            Message = "Successfully created the user!Please check your email",
         Data = result};
     }
 

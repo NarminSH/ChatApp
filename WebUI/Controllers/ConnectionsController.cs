@@ -48,20 +48,20 @@ namespace WebUI.Controllers
             return res;
         }
 
-        [HttpPost("getUserChannels")]
+        [HttpPost("getUserChannels/{id}")]
         public async Task<ResponseMessage> GetUserChannels([FromBody] UserChannelsQuery query)
         {
             ResponseMessage res = await Mediator.Send(query);
             return res;
         }
-        [HttpPost("getUserMessages")]
-        public async Task<ResponseMessage> GetUserMessages([FromBody] UserDirectMessagesQuery query)
+        [HttpGet("getUserMessages/{id}")]
+        public async Task<ResponseMessage> GetUserMessages([FromQuery] UserDirectMessagesQuery query)
         {
             ResponseMessage res = await Mediator.Send(query);
             return res;
         }
 
-        [HttpPatch("addUserToConnection")]
+        [HttpPost("addUserToConnection")]
         public async Task<ResponseMessage> AddUserToConnection([FromBody] AddUserToConnectionCommand command)
         {
             ResponseMessage res = await Mediator.Send(command);
