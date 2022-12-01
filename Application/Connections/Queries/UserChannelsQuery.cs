@@ -8,10 +8,7 @@ using System.Net;
 
 namespace Application.Connections.Queries
 {
-    public class UserChannelsQuery : IRequest<ResponseMessage>
-    {
-        public string userId { get; set; } = null!;
-    };
+    public record UserChannelsQuery(string userId) : IRequest<ResponseMessage>;
 
     public class UserChannelsQueryHandler : IRequestHandler<UserChannelsQuery,ResponseMessage>
     {

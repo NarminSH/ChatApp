@@ -28,9 +28,9 @@ namespace WebUI.Controllers
             return res;
         }
         [HttpPost]
-        public async Task<bool> Post([FromBody] CreateConnectionCommand value)
+        public async Task<ResponseMessage> Post([FromBody] CreateConnectionCommand value)
         {
-            bool res = await Mediator.Send(value);
+            ResponseMessage res = await Mediator.Send(value);
             return res;
         }
 
@@ -41,23 +41,23 @@ namespace WebUI.Controllers
             return res;
         }
 
-        [HttpDelete]
-        public async Task<bool> Delete([FromBody] DeleteConnectionCommand command)
+        [HttpDelete("{id:int}")]
+        public async Task<ResponseMessage> Delete(int id)
         {
-            bool res = await Mediator.Send(command);
+            ResponseMessage res = await Mediator.Send(new DeleteConnectionCommand(id));
             return res;
         }
 
-        [HttpPost("getUserChannels/{id}")]
-        public async Task<ResponseMessage> GetUserChannels([FromBody] UserChannelsQuery query)
+        [HttpPost("getUserChannels/{userId}")]
+        public async Task<ResponseMessage> GetUserChannels(string userId)
         {
-            ResponseMessage res = await Mediator.Send(query);
+            ResponseMessage res = await Mediator.Send(new UserChannelsQuery(userId));
             return res;
         }
-        [HttpGet("getUserMessages/{id}")]
-        public async Task<ResponseMessage> GetUserMessages([FromQuery] UserDirectMessagesQuery query)
+        [HttpGet("getUserMessages/{userId}")]
+        public async Task<ResponseMessage> GetUserMessages(string userId)
         {
-            ResponseMessage res = await Mediator.Send(query);
+            ResponseMessage res = await Mediator.Send(new UserDirectMessagesQuery(userId));
             return res;
         }
 

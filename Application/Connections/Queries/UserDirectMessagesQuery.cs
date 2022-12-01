@@ -8,10 +8,7 @@ using MediatR;
 
 namespace Application.Connections.Queries
 {
-    public class UserDirectMessagesQuery : IRequest<ResponseMessage>
-    {
-        public string userId { get; set; } = null!;
-    };
+    public record UserDirectMessagesQuery(string userId) : IRequest<ResponseMessage>;
 
     public class UserDirectMessagesQueryHandler : IRequestHandler<UserDirectMessagesQuery, ResponseMessage>
     {
