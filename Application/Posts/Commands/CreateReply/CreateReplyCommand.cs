@@ -28,8 +28,8 @@ namespace Application.Posts.Commands.CreateReply
             Post existedPost = await _postRepository.GetByIdInt(request.PostId);
             Post replyPost = _mapper.Map<Post>(request);
             replyPost.ChannelId = existedPost.ChannelId;
+            replyPost.ReplyPostId = existedPost.Id;
             var res = await _postRepository.AddAsync(replyPost);
-            existedPost.ReplyPostId = replyPost.Id;
             await _postRepository.Update(existedPost);
             return new ResponseMessage
             {
