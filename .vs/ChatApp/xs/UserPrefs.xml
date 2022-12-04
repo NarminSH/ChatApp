@@ -1,8 +1,21 @@
 ﻿<Properties StartupConfiguration="{2D9B42CE-A993-4805-9DE1-03C57A5DFA02}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WebUI/Controllers/ConnectionsController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Posts/Commands/UpdatePost/UpdatePostCommand.cs">
     <Files>
-      <File FileName="WebUI/Controllers/ConnectionsController.cs" Line="62" Column="10" />
+      <File FileName="WebUI/Controllers/ConnectionsController.cs" Line="21" Column="21" />
+      <File FileName="Application/Posts/Commands/CreatePost/CreatePostCommand.cs" Line="33" Column="6" />
+      <File FileName="WebUI/Controllers/PostsController.cs" Line="23" Column="31" />
+      <File FileName="Application/Connections/Commands/CreateConnection/CreateConnectionCommandValidator.cs" Line="23" Column="5" />
+      <File FileName="Application/Connections/Commands/AddUserConnection/AddUserToConnectionCommand.cs" Line="25" Column="54" />
+      <File FileName="Application/Repositories/Abstraction/IGenericRepository.cs" Line="7" Column="14" />
+      <File FileName="Application/Posts/Commands/UpdatePost/UpdatePostCommand.cs" Line="36" Column="36" />
+      <File FileName="Domain/Entities/Post.cs" Line="6" Column="37" />
+      <File FileName="Domain/Common/BaseAuditableEntity.cs" Line="6" Column="9" />
+      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommand.cs" Line="1" Column="1" />
+      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommandValidator.cs" Line="30" Column="24" />
+      <File FileName="Application/Posts/Commands/DeletePost/DeletePostCommand.cs" Line="15" Column="10" />
+      <File FileName="Application/Posts/Commands/CreatePost/CreatePostCommandValidator.cs" Line="1" Column="1" />
+      <File FileName="Application/Posts/Commands/UpdatePost/UpdatePostCommandValidator.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,38 +23,29 @@
           <Node name="ChatApp" expanded="True">
             <Node name="src" expanded="True">
               <Node name="Application" expanded="True">
-                <Node name="Common" expanded="True" />
                 <Node name="Connections" expanded="True">
-                  <Node name="Commands" expanded="True">
-                    <Node name="AddUserConnection" expanded="True" />
-                    <Node name="CreateConnection" expanded="True" />
-                    <Node name="DeleteConnection" expanded="True" />
-                    <Node name="UpdateConnection" expanded="True" />
-                  </Node>
-                  <Node name="Queries" expanded="True" />
-                </Node>
-                <Node name="Dtos" expanded="True">
-                  <Node name="ConnectionDtos" expanded="True" />
-                  <Node name="EmployeeDtos" expanded="True" />
-                  <Node name="PostDtos" expanded="True" />
-                </Node>
-                <Node name="Employees" expanded="True">
-                  <Node name="Commands" expanded="True">
-                    <Node name="CreateEmployee" expanded="True" />
-                  </Node>
+                  <Node name="Commands" expanded="True" />
                 </Node>
                 <Node name="Posts" expanded="True">
                   <Node name="Commands" expanded="True">
                     <Node name="CreatePost" expanded="True" />
+                    <Node name="DeletePost" expanded="True" />
+                    <Node name="UpdatePost" expanded="True" />
                   </Node>
+                </Node>
+                <Node name="Repositories" expanded="True">
+                  <Node name="Abstraction" expanded="True" />
                 </Node>
               </Node>
               <Node name="Domain" expanded="True">
                 <Node name="Common" expanded="True" />
+                <Node name="Entities" expanded="True" />
               </Node>
               <Node name="Infrastructure" expanded="True">
                 <Node name="Dependencies" expanded="True" />
-                <Node name="Persistence" expanded="True" />
+                <Node name="Repositories" expanded="True">
+                  <Node name="Implementation" expanded="True" />
+                </Node>
                 <Node name="Services" expanded="True" />
               </Node>
               <Node name="WebUI" expanded="True">
@@ -59,9 +63,7 @@
   <MonoDevelop.Ide.ItemProperties.src.WebUI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/narmin/Projects/ChatApp/Application/Connections/Commands/AddUserConnection/AddUserToConnectionCommand.cs" relfile="Application/Connections/Commands/AddUserConnection/AddUserToConnectionCommand.cs" line="30" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

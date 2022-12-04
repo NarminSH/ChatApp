@@ -14,7 +14,7 @@ namespace Application.Posts.Commands.UpdatePost
         public int ChannelId { get; set; }
         public string EmployeeId { get; set; } = null!;
         public string Message { get; set; } = null!;
-        public int? ReplyPostId { get; set; }
+        //public int? ReplyPostId { get; set; }
     }
     public class UpdatePostCommandHandler : IRequestHandler<UpdatePostCommand, ResponseMessage>
     {

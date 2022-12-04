@@ -7,6 +7,7 @@ using Application.Connections.Commands.CreateConnection;
 using Application.Connections.Commands.DeleteConnection;
 using Application.Connections.Commands.UpdateConnection;
 using Application.Posts.Commands.CreatePost;
+using Application.Posts.Commands.CreateReply;
 using Application.Posts.Commands.DeletePost;
 using Application.Posts.Commands.UpdatePost;
 using Microsoft.AspNetCore.Authorization;
@@ -41,6 +42,12 @@ namespace WebUI.Controllers
         public async Task<ResponseMessage> Delete(int id)
         {
             ResponseMessage res = await Mediator.Send(new DeletePostCommand(id));
+            return res;
+        }
+        [HttpPost("replies")]
+        public async Task<ResponseMessage> PostReply([FromBody] CreateReplyCommand command)
+        {
+            ResponseMessage res = await Mediator.Send(command);
             return res;
         }
     }
