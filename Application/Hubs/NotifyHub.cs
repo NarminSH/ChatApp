@@ -5,7 +5,6 @@ namespace Application.Hubs
 {
     public class NotifyHub : Hub<ITypedHubClient>
     {
-        
     }
 }
 

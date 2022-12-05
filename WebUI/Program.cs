@@ -26,8 +26,7 @@ builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
     builder.AllowAnyMethod()
     .AllowAnyHeader()
     .AllowAnyOrigin()
-    .AllowCredentials()
-    .WithOrigins("http://localhost:4200");
+    .WithOrigins("*");
 
 }));
 builder.Services.AddSignalR();
@@ -51,6 +50,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-//app.MapHub<NotifyHub>("/notify");
+app.MapHub<NotifyHub>("/notify");
 app.Run();
 

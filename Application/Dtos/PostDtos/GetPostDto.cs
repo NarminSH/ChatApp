@@ -1,4 +1,5 @@
 ﻿using System;
+using Application.Dtos.AttachmentDtos;
 using Application.Dtos.ConnectionDtos;
 using Application.Dtos.EmployeeDtos;
 
@@ -16,8 +17,7 @@ namespace Application.Dtos.PostDtos
         public virtual GetPostDto? ReplyPost { get; set; }
         public virtual ICollection<GetPostDto>? Children { get; set; }
         //todo complete dto
-
-        //public ICollection<Attachment>? Attachments { get; set; }
+        public ICollection<GetAttachmentDto>? Attachments { get; set; }
         //public ICollection<Reaction>? Reactions { get; set; }
     }
 }
