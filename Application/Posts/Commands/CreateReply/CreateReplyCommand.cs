@@ -1,8 +1,10 @@
 ﻿using System;
 using Application.Common;
+using Application.Hubs;
 using Application.Repositories.Abstraction;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Application.Posts.Commands.CreateReply
 {
@@ -16,11 +18,13 @@ namespace Application.Posts.Commands.CreateReply
     {
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
+        private IHubContext<NotifyHub, ITypedHubClient> _hubContext;
         public CreateReplyCommandHandler(IPostRepository postRepo,
-            IMapper mapper)
+            IMapper mapper, IHubContext<NotifyHub, ITypedHubClient> hubContext)
         {
             _postRepository = postRepo;
             _mapper = mapper;
+            _hubContext = hubContext;
         }
 
         public async Task<ResponseMessage> Handle(CreateReplyCommand request, CancellationToken cancellationToken)
@@ -31,6 +35,7 @@ namespace Application.Posts.Commands.CreateReply
             replyPost.ReplyPostId = existedPost.Id;
             var res = await _postRepository.AddAsync(replyPost);
             await _postRepository.Update(existedPost);
+            await _hubContext.Clients.All.BroadcastPost(post: replyPost);
             return new ResponseMessage
             {
                 StatusCode = System.Net.HttpStatusCode.OK,

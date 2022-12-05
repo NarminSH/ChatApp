@@ -41,6 +41,7 @@
     <None Remove="Posts\Commands\UpdatePost\" />
     <None Remove="Posts\Commands\CreateReply\" />
     <None Remove="Hubs\" />
+    <None Remove="Posts\Commands\DownloadAttachment\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -73,6 +74,7 @@
     <Folder Include="Posts\Commands\UpdatePost\" />
     <Folder Include="Posts\Commands\CreateReply\" />
     <Folder Include="Hubs\" />
+    <Folder Include="Posts\Commands\DownloadAttachment\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

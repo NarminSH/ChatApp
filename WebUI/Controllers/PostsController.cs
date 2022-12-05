@@ -9,10 +9,10 @@ using Application.Connections.Commands.UpdateConnection;
 using Application.Posts.Commands.CreatePost;
 using Application.Posts.Commands.CreateReply;
 using Application.Posts.Commands.DeletePost;
+using Application.Posts.Commands.DownloadAttachment;
 using Application.Posts.Commands.UpdatePost;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 
 
 namespace WebUI.Controllers
@@ -46,6 +46,12 @@ namespace WebUI.Controllers
         }
         [HttpPost("replies")]
         public async Task<ResponseMessage> PostReply([FromBody] CreateReplyCommand command)
+        {
+            ResponseMessage res = await Mediator.Send(command);
+            return res;
+        }
+        [HttpPost("attachments")]
+        public async Task<ResponseMessage> PostAttachment([FromForm] DownloadAttachmentCommand command)
         {
             ResponseMessage res = await Mediator.Send(command);
             return res;

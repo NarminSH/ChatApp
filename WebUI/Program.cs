@@ -21,10 +21,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
-builder.Services.AddHttpContextAccessor();
-builder.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
 {
     builder.AllowAnyMethod()
@@ -36,6 +32,10 @@ builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
 }));
 builder.Services.AddSignalR();
 builder.Services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+builder.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
 var app = builder.Build();
 
@@ -50,7 +50,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 //app.MapHub<NotifyHub>("/notify");
 app.Run();

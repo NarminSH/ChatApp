@@ -28,6 +28,7 @@ namespace Infrastructure
             serviceCollection.AddScoped<AuditableEntitySaveChangesInterceptor>();
             serviceCollection.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             serviceCollection.AddTransient<IDateTime, DateTimeService>();
+            serviceCollection.AddTransient<IUploadFile, UploadFile>();
             serviceCollection.AddTransient<IEmployeeRepository, EmployeeRepository>();
             serviceCollection.AddTransient<IPostRepository, PostRepository>();
             serviceCollection.AddTransient<IAttachmentRepository, AttachmentRepository>();
@@ -37,7 +38,6 @@ namespace Infrastructure
             serviceCollection.AddTransient<IEmailSender, SendGridEmailSender>();
 
             serviceCollection.AddTransient<IApplicationDbContext, ApplicationDbContext>();
-
 
             serviceCollection.AddIdentity<Employee, IdentityRole>(opt =>
             {

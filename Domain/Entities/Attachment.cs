@@ -5,8 +5,8 @@ namespace Domain.Entities
     {
         public int PostId { get; set; }
         public Post Post { get; set; } = null!;
-        public string FileName { get; set; } 
-        public int Type { get; set; }
+        public string FileName { get; set; } = null!;
+        public string? Type { get; set; }
     }
 }
 

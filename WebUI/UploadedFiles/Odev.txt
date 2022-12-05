@@ -1,0 +1,23 @@
+1) Northwind veri tabanını kullanara consol üzerinden CodeFirst proje hazırlayınız Kategori tablosunda CRUD işlemleri yaparak test ediniz.NOT: Tüm tabloların class'ları eklenecek
+2) CodeFirst ile bir telefon rehberi yazınız. Console üzerinde
+	2.1) Kullanıcı uygulamayı açtığında işlem menüsü gelecek. örnek.
+	Kayıt Eklemek İçin    (a)
+	Kayıt Listelemek İçin (l)
+	Kayıt Aramak İçin     (s)
+	Çıkış                 (e)
+	2.2) Kullanıcı bu adımlardan herhangi birini seçtiğinde işleme devam edilecek. 
+		2.2.1) Kullanıcı ekleme yaparsa sırası ile, adı, soyadı, telefon, mail bilgileri istenecek ve en son Kaydetmek istiyormusunuz sorusu sorulacak ve (Y/N) olarak gösterilip y ise eklenecek n ise iptal edilecek ve yine işlem menüsü gösterilecek
+		2.2.2) Kullanıcı listeleme seçer ise,
+		
+		       Id   Adı                Soyadı                Telefon                Mail    
+               --------------------------------------------------------------------------------------------------------
+			   1    Murat              Vuranok               +90(123) 456 78 14     murat.vuranok@code.edu.az
+
+			   Kayıt Silmek İçin (d)
+		       İşlem Menüsü İçin (m)
+
+		şeklinde listelenecek.
+		Kullanıcı bir kayıt silmek isterse, silmek istediğiniz kaydın id değerini giriniz uyarısı verilecek ve kullanıcıdan alınan id değerine göre kayıt silinecek ve yeniden listelenecek.
+ 		Kullanıcı (m) harfine basarsa, tekrardan işlem menüsüne yönlendirilecek.
+	2.3) Kullanıcı (s) harfine basar ise, lütfen arama için değer giriniz uyarısı verdiriniz ve kullanıcının girdiği text'e göre tüm alanlarda arama yapınız ve sonucu liste olarak gösteriniz (bknz. 2.2.2)
+3) Bu uygulama Repository Design Pattern kullanılarak yapılacak ve, Ef yazılan metotların aynılarını ADO.NET ile yazılmalıdır. 2 servisde aynı interface'i implement etmelidir. ADO.NET ile yazdığınız tüm servisler Generic olmalıdır. CRUD işlemlerde ben Person sınıfını kullanıyorsam, yeni bir sınıf yazdığımda aynı servisler bu sınıf içinde çalışmalılar. 

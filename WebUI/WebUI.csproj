@@ -21,6 +21,7 @@
     <None Remove="FluentValidation.AspNetCore" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.Extensions.Configuration.UserSecrets" />
+    <None Remove="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj">
@@ -29,5 +30,8 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
 </Project>

@@ -17,7 +17,6 @@ public class CreatePostCommand : IRequest<ResponseMessage>, IMapFrom<Post>
     public int ChannelId { get; set; }
     public string EmployeeId { get; set; } = null!;
     public string Message { get; set; } = null!;
-    public int? ReplyPostId { get; set; }
 }
 
 public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, ResponseMessage>
@@ -44,7 +43,7 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, Respo
         bool result = await _postRepository.AddAsync(entity);
         if (result)
         {
-            await _hubContext.Clients.All.BroadcastMessage(post: entity);
+            await _hubContext.Clients.All.BroadcastPost(post: entity);
             return new ResponseMessage
             {
                 StatusCode = System.Net.HttpStatusCode.Created,
