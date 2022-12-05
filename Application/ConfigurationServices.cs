@@ -14,7 +14,7 @@ namespace Application
         {
             serviceCollection.AddMediatR(Assembly.GetExecutingAssembly());
             serviceCollection.AddAutoMapper(Assembly.GetExecutingAssembly());
-            serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());   
             return serviceCollection;
         }
     }

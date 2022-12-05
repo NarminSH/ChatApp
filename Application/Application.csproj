@@ -40,6 +40,7 @@
     <None Remove="Posts\Commands\DeletePost\" />
     <None Remove="Posts\Commands\UpdatePost\" />
     <None Remove="Posts\Commands\CreateReply\" />
+    <None Remove="Hubs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -71,6 +72,7 @@
     <Folder Include="Posts\Commands\DeletePost\" />
     <Folder Include="Posts\Commands\UpdatePost\" />
     <Folder Include="Posts\Commands\CreateReply\" />
+    <Folder Include="Hubs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

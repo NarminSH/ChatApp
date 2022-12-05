@@ -95,3 +95,4 @@
 /Users/narmin/Projects/ChatApp/WebUI/bin/Debug/net6.0/System.Text.Encodings.Web.dll
 /Users/narmin/Projects/ChatApp/WebUI/bin/Debug/net6.0/System.Text.Json.dll
 /Users/narmin/Projects/ChatApp/WebUI/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
+/Users/narmin/Projects/ChatApp/WebUI/bin/Debug/net6.0/System.Net.WebSockets.WebSocketProtocol.dll

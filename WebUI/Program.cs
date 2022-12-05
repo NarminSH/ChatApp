@@ -1,9 +1,12 @@
 ﻿using Application;
+using Application.Hubs;
 using Domain.Entities;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Infrastructure.Repositories.Implementation;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +25,17 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+{
+    builder.AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowAnyOrigin()
+    .AllowCredentials()
+    .WithOrigins("http://localhost:4200");
+
+}));
+builder.Services.AddSignalR();
+builder.Services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
 var app = builder.Build();
 
@@ -38,6 +52,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+//app.MapHub<NotifyHub>("/notify");
 app.Run();
 

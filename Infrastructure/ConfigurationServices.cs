@@ -4,6 +4,7 @@ using Infrastructure.Interceptors;
 using Infrastructure.Repositories.Implementation;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +38,7 @@ namespace Infrastructure
 
             serviceCollection.AddTransient<IApplicationDbContext, ApplicationDbContext>();
 
+
             serviceCollection.AddIdentity<Employee, IdentityRole>(opt =>
             {
                 opt.SignIn.RequireConfirmedEmail = true;
@@ -66,7 +68,7 @@ namespace Infrastructure
                     ClockSkew = TimeSpan.Zero
                 };
             });
-
+            
             return serviceCollection;
         }
     }
