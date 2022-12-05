@@ -18,8 +18,7 @@ namespace WebUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //todo don't forget
-    //[Authorize]
+    [Authorize]
     public class ConnectionsController : ApiBaseController
     {
         [HttpGet]
