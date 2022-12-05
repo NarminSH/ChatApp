@@ -16,40 +16,21 @@ namespace Application.Employees.Commands.ChangePassword
     }
     public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordCommand, ResponseMessage>
     {
-        private readonly IEmployeeRepository _employeeRepository;
-        private readonly UserManager<Employee> _userManager;
+        private readonly IAuth _authService;
 
-        public ChangePasswordCommandHandler(IEmployeeRepository employeeRepository,
-            UserManager<Employee> userManager)
+        public ChangePasswordCommandHandler(IAuth auth)
         {
-            this._employeeRepository = employeeRepository;
-            this._userManager = userManager;
+            _authService = auth;
         }
         public async Task<ResponseMessage> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
         {
-            Employee employee = await _userManager.FindByEmailAsync(request.Email);
-            if (employee != null)
+            ResponseMessage res = await _authService.ChangePassword(changePasswordCommand: request);
+            return new ResponseMessage
             {
-            var res = await _userManager.ChangePasswordAsync(employee,
-                request.CurrentPassword, request.NewPassword);
-                if (res.Succeeded)
-                {
-                    return new ResponseMessage
-                    {
-                        StatusCode = HttpStatusCode.OK,
-                        Message = "Successfully changed the password"
-                    };
-                }
-                else
-                {
-                    return new ResponseMessage
-                    {
-                        StatusCode = HttpStatusCode.Forbidden,
-                        Message = "Was not able to change the password"
-                    };
-                }
-            }
-            else { throw new NotFoundException("Could not find employee"); }
+                StatusCode = res.StatusCode,
+                Message = res.Message
+            };
+
         }
     }
 }

@@ -20,36 +20,21 @@ public class CreateEmployeeCommand : IRequest<ResponseMessage>, IMapFrom<Employe
 
 public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, ResponseMessage>
 {
-    private readonly UserManager<Employee> _userManager;
     private readonly IMapper _mapper;
-    private readonly IEmailSender _mailService;
-    private readonly LinkGenerator _linkGenerator;
-    private readonly IHttpContextAccessor _httpContext;
+    private readonly IAuth _authservice;
 
-    public CreateEmployeeCommandHandler(UserManager<Employee> userManager, IMapper mapper,
-        IEmailSender emailSender, LinkGenerator linkGenerator, IHttpContextAccessor http)
+    public CreateEmployeeCommandHandler(IMapper mapper, IAuth service)
     {
         this._mapper = mapper;
-        this._userManager = userManager;
-        this._mailService = emailSender; 
-        this._linkGenerator = linkGenerator;
-        this._httpContext = http;
+        this._authservice = service;
     }
 
     public async Task<ResponseMessage> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var entity = _mapper.Map<Employee>(request);
-        IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
-        var token = await _userManager.GenerateEmailConfirmationTokenAsync(entity);
-        Console.WriteLine(".................");
-        Console.WriteLine("Register confirmation token is: " +token);
-        Console.WriteLine(".................");
-        string url = _linkGenerator.GetUriByAction( _httpContext.HttpContext,
-            action: "ConfirmEmail", controller: "Employees", values:  new { token, entity.Id });
-        string message = "Please confirm your email by clicking here " + url;
-        await _mailService.SendEmailAsync(entity.Email, "Register confirmation", message);
+        var result = await _authservice.CreateEmployee(entity);
         return new ResponseMessage { StatusCode = System.Net.HttpStatusCode.OK,
-            Message = "Successfully created the user!Please check your email",
+            Message = "Successfully created the user! Please check your email to validate user",
         Data = result};
     }
 

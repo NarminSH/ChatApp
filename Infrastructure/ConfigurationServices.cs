@@ -29,6 +29,7 @@ namespace Infrastructure
             serviceCollection.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             serviceCollection.AddTransient<IDateTime, DateTimeService>();
             serviceCollection.AddTransient<IUploadFile, UploadFile>();
+            serviceCollection.AddTransient<IAuth, AuthService>();
             serviceCollection.AddTransient<IEmployeeRepository, EmployeeRepository>();
             serviceCollection.AddTransient<IPostRepository, PostRepository>();
             serviceCollection.AddTransient<IAttachmentRepository, AttachmentRepository>();

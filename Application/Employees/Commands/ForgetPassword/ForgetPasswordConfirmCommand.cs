@@ -19,35 +19,22 @@ public class ForgetPasswordCommandConfirm : IRequest<ResponseMessage>
 
 public class ForgetPasswordCommandConfirmHandler : IRequestHandler<ForgetPasswordCommandConfirm, ResponseMessage>
 {
-    private readonly IEmployeeRepository _employeeRepository;
-    private readonly UserManager<Employee> _userManager;
+    private readonly IAuth _authService;
 
-    public ForgetPasswordCommandConfirmHandler(IEmployeeRepository employeeRepository,
-        UserManager<Employee> userManager)
+    public ForgetPasswordCommandConfirmHandler(IAuth auth)
     {
-        this._employeeRepository = employeeRepository;
-        this._userManager = userManager;
-
+        this._authService = auth;
     }
 
     public async Task<ResponseMessage> Handle(ForgetPasswordCommandConfirm request, CancellationToken cancellationToken)
     {
-        var existedUser = await _userManager.FindByEmailAsync(request.Email);
-        if (existedUser!= null)
+       ResponseMessage res = await _authService.ForgetPasswordConfirmation(forgetPasswordCommand: request);
+        return new ResponseMessage
         {
-            var result = await _userManager.ResetPasswordAsync(existedUser, request.Token,
-                request.NewPassword);
-            if (result.Succeeded) { return new ResponseMessage {
-                StatusCode = HttpStatusCode.OK,
-            Message = "Successfully changed password"
-            };
-            }
-            else { return new ResponseMessage {StatusCode = HttpStatusCode.BadRequest,
-            Message = "There was a problem changing password"
-            };
-            }
-        }
-        else { throw new NotFoundException(); }
+            StatusCode = res.StatusCode,
+            Message = res.Message
+        };
+
     }
 
 }

@@ -16,43 +16,22 @@ public class ForgetPasswordCommand: IRequest<ResponseMessage>
 
 public class ForgetPasswordCommandHandler : IRequestHandler<ForgetPasswordCommand, ResponseMessage>
 {
-    private readonly IEmployeeRepository _employeeRepository;
-    private readonly UserManager<Employee> _userManager;
-    private readonly IHttpContextAccessor _httpContext;
-    private readonly LinkGenerator _linkGenerator;
-    private readonly IEmailSender _mailService;
-
-    public ForgetPasswordCommandHandler(IEmployeeRepository employeeRepository,
-        UserManager<Employee> userManager, IHttpContextAccessor httpContext,
-        LinkGenerator generator, IEmailSender emailSender)
+    private readonly IAuth _authService;
+    public ForgetPasswordCommandHandler(IAuth auth)
     {
-        this._employeeRepository = employeeRepository;
-        this._userManager = userManager;
-        this._httpContext = httpContext;
-        this._linkGenerator = generator;
-        this._mailService = emailSender;
+        this._authService = auth;
     }
 
     public async Task<ResponseMessage> Handle(ForgetPasswordCommand request, CancellationToken cancellationToken)
     {
-        var existedUser = await _userManager.FindByEmailAsync(request.Email);
-        if (existedUser != null)
+        ResponseMessage res = await  _authService.ForgetPassword(request.Email);
+        return new ResponseMessage
         {
-            string token = await _userManager.GeneratePasswordResetTokenAsync(existedUser);
-            Console.WriteLine(token);
-            Console.WriteLine("...............");
-            string url = _linkGenerator.GetUriByAction(_httpContext.HttpContext,
-            action: "ForgetPassword", controller: "Employees", values: new { token, existedUser.Email });
-            string message = "Please click to reset password " + url;
-            await _mailService.SendEmailAsync(existedUser.Email, "Password Recovery", message);
-            return new ResponseMessage
-            {
-                StatusCode = HttpStatusCode.OK,
-                Message = "Please check your email"
-
-            };
-        } else { throw new NotFoundException(); }
+            StatusCode = res.StatusCode,
+            Message = res.Message
+        };
         
+
     }
 }
 
