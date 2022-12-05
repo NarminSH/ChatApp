@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Net;
 using Application.Common.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
+        //return expression != null ? await _dbSet.AsNoTracking().ToListAsync()
+        //    : _dbSet.Where(expression);
         var result = await _dbSet.AsNoTracking().ToListAsync();
         return result;
         //todo add if else statement

@@ -1,11 +1,12 @@
 ﻿using System;
 using Application.Dtos.AttachmentDtos;
+using Application.Dtos.BaseDtos;
 using Application.Dtos.ConnectionDtos;
 using Application.Dtos.EmployeeDtos;
 
 namespace Application.Dtos.PostDtos
 {
-    public class GetPostDto
+    public class GetPostDto:BaseAuditableDto, IMapFrom<Post>
     {
         public int ChannelId { get; set; }
         public GetConnectionDto? Channel { get; set; }

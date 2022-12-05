@@ -24,12 +24,13 @@ namespace Application.Posts.Queries
 
         public async Task<ResponseMessage> Handle(GetPostsByChannel request, CancellationToken cancellationToken)
         {
-            //var posts = await _postRepository.;
-            //var connectionDtos = _mapper.Map<IEnumerable<GetPostDto>>(posts);
+
+            var posts = await _postRepository.GetChannelPosts(request.connectionId);
+            var postDtos = _mapper.Map<IEnumerable<GetPostDto>>(posts);
             return new ResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
-                Data = "true"
+                Data =postDtos
             };
         }
 
