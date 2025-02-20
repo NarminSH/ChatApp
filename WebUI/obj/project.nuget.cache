@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZNwC12Ok8kukU/cJVeu07rpSHwnCinVAYTdsu9qDWK+/nzZw2onzKoVbpFB22IWybAetdatzH6vsyrlwxkwRgg==",
+  "dgSpecHash": "NZaUG476fFJlPQ2qz8JD6K+jNhc9thMLdGRt7fRWTukXhsVF7zdsOM9QGwLkKBTVauY//DiKoU7YOv63uHyNNA==",
   "success": true,
   "projectFilePath": "/Users/narmin/Projects/ChatApp/WebUI/WebUI.csproj",
   "expectedPackageFiles": [
@@ -114,7 +114,10 @@
     "/Users/narmin/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
     "/Users/narmin/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
     "/Users/narmin/.nuget/packages/system.threading.channels/4.5.0/system.threading.channels.4.5.0.nupkg.sha512",
-    "/Users/narmin/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512"
+    "/Users/narmin/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
+    "/Users/narmin/.nuget/packages/microsoft.netcore.app.ref/6.0.25/microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "/Users/narmin/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.25/microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "/Users/narmin/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.25/microsoft.netcore.app.host.osx-arm64.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }

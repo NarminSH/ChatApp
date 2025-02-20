@@ -1,69 +1,74 @@
 ﻿<Properties StartupConfiguration="{2D9B42CE-A993-4805-9DE1-03C57A5DFA02}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Posts/Commands/UpdatePost/UpdatePostCommand.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.src.WebUI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebUI/appsettings.json">
     <Files>
-      <File FileName="WebUI/Controllers/ConnectionsController.cs" Line="21" Column="21" />
-      <File FileName="Application/Posts/Commands/CreatePost/CreatePostCommand.cs" Line="33" Column="6" />
-      <File FileName="WebUI/Controllers/PostsController.cs" Line="23" Column="31" />
-      <File FileName="Application/Connections/Commands/CreateConnection/CreateConnectionCommandValidator.cs" Line="23" Column="5" />
-      <File FileName="Application/Connections/Commands/AddUserConnection/AddUserToConnectionCommand.cs" Line="25" Column="54" />
-      <File FileName="Application/Repositories/Abstraction/IGenericRepository.cs" Line="7" Column="14" />
-      <File FileName="Application/Posts/Commands/UpdatePost/UpdatePostCommand.cs" Line="36" Column="36" />
-      <File FileName="Domain/Entities/Post.cs" Line="6" Column="37" />
-      <File FileName="Domain/Common/BaseAuditableEntity.cs" Line="6" Column="9" />
-      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommand.cs" Line="1" Column="1" />
-      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommandValidator.cs" Line="30" Column="24" />
-      <File FileName="Application/Posts/Commands/DeletePost/DeletePostCommand.cs" Line="15" Column="10" />
-      <File FileName="Application/Posts/Commands/CreatePost/CreatePostCommandValidator.cs" Line="1" Column="1" />
-      <File FileName="Application/Posts/Commands/UpdatePost/UpdatePostCommandValidator.cs" Line="1" Column="1" />
+      <File FileName="Application/Employees/Commands/LoginEmployee/LoginEmployeeCommand.cs" />
+      <File FileName="Infrastructure/Services/AuthService.cs" />
+      <File FileName="WebUI/Controllers/EmployeesController.cs" />
+      <File FileName="Application/Employees/Commands/ForgetPassword/ForgetPasswordCommand.cs" />
+      <File FileName="Application/Employees/Commands/ForgetPassword/ForgetPasswordConfirmCommand.cs" />
+      <File FileName="Application/Repositories/Abstraction/IAuth.cs" />
+      <File FileName="Application/Employees/Commands/ChangePassword/ChangePasswordCommand.cs" />
+      <File FileName="WebUI/Controllers/ApiBaseController.cs" />
+      <File FileName="WebUI/Controllers/ConnectionsController.cs" />
+      <File FileName="WebUI/Controllers/PostsController.cs" />
+      <File FileName="Application/Dtos/PostDtos/GetPostDto.cs" />
+      <File FileName="Infrastructure/Repositories/Implementation/GenericRepository.cs" />
+      <File FileName="WebUI/Program.cs" />
+      <File FileName="WebUI/appsettings.json" Line="10" Column="43" />
+      <File FileName="Application/Connections/Commands/CreateConnection/CreateConnectionCommand.cs" />
+      <File FileName="Domain/Entities/Connection.cs" />
+      <File FileName="Domain/Entities/EmployeeChannel.cs" />
+      <File FileName="Domain/Entities/AuthMessageSenderOptions.cs" />
+      <File FileName="Application/Connections/Commands/CreateConnection/CreateConnectionCommandValidator.cs" />
+      <File FileName="Application/Common/Exceptions/NotFoundException.cs" />
+      <File FileName="Application/Common/ResponseMessage.cs" />
+      <File FileName="Application/Connections/Commands/DeleteConnection/DeleteConnectionCommand.cs" />
+      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommand.cs" />
+      <File FileName="Application/Connections/Commands/UpdateConnection/UpdateConnectionCommandValidator.cs" />
+      <File FileName="Application/Employees/Commands/ConfirmEmployee/ConfirmEmployeeCommand.cs" />
+      <File FileName="Application/Employees/Commands/CreateEmployee/CreateEmployeeCommandValidator.cs" />
+      <File FileName="Infrastructure/ConfigurationServices.cs" />
+      <File FileName="WebUI/ConfigureService.cs" />
+      <File FileName="WebUI/WeatherForecast.cs" />
+      <File FileName="Domain/Class1.cs" />
+      <File FileName="Domain/GlobalUsing.cs" />
+      <File FileName="Domain/Common/BaseAuditableEntity.cs" />
+      <File FileName="Domain/Common/BaseEntity.cs" />
+      <File FileName="Application/ConfigurationServices.cs" />
+      <File FileName="Application/GlobalUsing.cs" />
+      <File FileName="Application/Common/Mappings/MappingProfile.cs" />
+      <File FileName="Infrastructure/Repositories/Implementation/EmployeeRepository.cs" />
+      <File FileName="Infrastructure/Services/SendGridEmailSender.cs" />
+      <File FileName="Application/Employees/Commands/CreateEmployee/CreateEmployeeCommand.cs" />
+      <File FileName="Domain/Entities/Employee.cs" />
+      <File FileName="Infrastructure/Repositories/Implementation/EmployeeChannelRepository.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ChatApp" expanded="True">
+          <Node name="ChatApp">
             <Node name="src" expanded="True">
               <Node name="Application" expanded="True">
-                <Node name="Connections" expanded="True">
-                  <Node name="Commands" expanded="True" />
-                </Node>
-                <Node name="Posts" expanded="True">
+                <Node name="Employees" expanded="True">
                   <Node name="Commands" expanded="True">
-                    <Node name="CreatePost" expanded="True" />
-                    <Node name="DeletePost" expanded="True" />
-                    <Node name="UpdatePost" expanded="True" />
+                    <Node name="LoginEmployee" expanded="True" />
                   </Node>
                 </Node>
-                <Node name="Repositories" expanded="True">
-                  <Node name="Abstraction" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Domain" expanded="True">
-                <Node name="Common" expanded="True" />
-                <Node name="Entities" expanded="True" />
-              </Node>
-              <Node name="Infrastructure" expanded="True">
-                <Node name="Dependencies" expanded="True" />
-                <Node name="Repositories" expanded="True">
-                  <Node name="Implementation" expanded="True" />
-                </Node>
-                <Node name="Services" expanded="True" />
               </Node>
               <Node name="WebUI" expanded="True">
-                <Node name="Controllers" expanded="True" />
+                <Node name="appsettings.json" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.src.WebUI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
 </Properties>

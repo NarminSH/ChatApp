@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bx5fYyRk42B5fORzryRj8rnuhPgMa40aE93fzXda2dr8WLou7LJPVqB1k6LtfDySF+GD48XD+ZCWu+jCq2IEGA==",
+  "dgSpecHash": "UHHi+sL6b+r8bXwDLnVKruGBdYpa7tfNRz0wrctXq8S3v01A4le0eqJvyqkn1Lm0z7hxOtsu318Cj04lzNN6iw==",
   "success": true,
   "projectFilePath": "/Users/narmin/Projects/ChatApp/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -98,7 +98,9 @@
     "/Users/narmin/.nuget/packages/system.text.encoding.codepages/4.7.0/system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "/Users/narmin/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
     "/Users/narmin/.nuget/packages/system.threading.channels/4.5.0/system.threading.channels.4.5.0.nupkg.sha512",
-    "/Users/narmin/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512"
+    "/Users/narmin/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
+    "/Users/narmin/.nuget/packages/microsoft.netcore.app.ref/6.0.25/microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "/Users/narmin/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.25/microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }

@@ -20,7 +20,7 @@ namespace WebUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PostsController : ApiBaseController
     {
 
